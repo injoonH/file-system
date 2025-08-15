@@ -1,0 +1,36 @@
+.explorer {
+  &, ul {
+    list-style: none;
+    padding-inline-start: unset;
+  }
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(2 32 71 / 0.05);
+  }
+
+  &::before {
+    content: '';
+    width: 1rem;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.activeLink {
+  background-color: rgb(2 32 71 / 0.05);
+}
+
+.icon {
+  margin-right: 0.2em;
+  width: 1em;
+  height: 1em;
+}
