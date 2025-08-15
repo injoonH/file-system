@@ -1,0 +1,8 @@
+# Dependency directories
+node_modules/
+
+# TanStack Router
+routeTree.gen.ts
+
+# Misc
+.DS_Store
