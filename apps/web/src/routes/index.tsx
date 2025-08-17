@@ -6,7 +6,7 @@ export const Route = createFileRoute('/')({
 
 function Root() {
   return (
-    <main>
+    <main style={{ padding: '1rem' }}>
       <h1>Welcome to the File System</h1>
     </main>
   )

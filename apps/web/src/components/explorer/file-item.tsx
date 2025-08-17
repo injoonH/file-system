@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from '@tanstack/react-router'
+import { useMatch, useNavigate } from '@tanstack/react-router'
 import { ExplorerItem } from '@/components/explorer/explorer-item.tsx'
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
 
 export function FileItem({ id, name, link, level, setRef, focusPrev, focusNext, focusParent }: Props) {
   const navigate = useNavigate()
-  const path = useParams({ from: '/tree/$', select: (params) => params._splat })
+  const match = useMatch({ from: '/tree/$', shouldThrow: false })
 
   const handleNavigate = () => {
     navigate({ to: '/tree/$', params: { _splat: link } })
@@ -27,7 +27,7 @@ export function FileItem({ id, name, link, level, setRef, focusPrev, focusNext, 
       name={name}
       iconSrc="/images/file.svg"
       level={level}
-      isActive={path === link}
+      isActive={match?.params._splat === link}
       onDoubleClick={handleNavigate}
       onKeyDown={(event) => {
         switch (event.key) {
