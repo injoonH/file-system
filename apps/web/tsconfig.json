@@ -23,8 +23,8 @@
     "forceConsistentCasingInFileNames": true,
     "verbatimModuleSyntax": true,
     "jsx": "react-jsx",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "target": "ES2022",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "target": "ESNext",
     "skipLibCheck": true,
   }
 }

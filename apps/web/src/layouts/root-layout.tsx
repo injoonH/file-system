@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react'
-import { ExplorerSidebar } from '@/components/explorer/explorer-sidebar.tsx'
+import { Explorer } from '@/components/explorer/explorer.tsx'
 import styles from './root-layout.module.css'
 
 interface Props {
@@ -9,8 +9,8 @@ interface Props {
 export function RootLayout({ children }: Props) {
   return (
     <div className={styles.layout}>
-      <ExplorerSidebar />
-      {children}
+      <Explorer />
+      <div>{children}</div>
     </div>
   )
 }

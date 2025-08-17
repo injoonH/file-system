@@ -37,3 +37,7 @@ h4 {
   line-height: 2.5rem;
   font-weight: 600;
 }
+
+button {
+  font: inherit;
+}

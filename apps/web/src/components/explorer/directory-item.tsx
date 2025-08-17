@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import { Tree } from '@/components/explorer/tree.tsx'
-import type { FsItem } from '@/types/fs.ts'
-import styles from './explorer.module.css'
+import { ExplorerItem } from '@/components/explorer/explorer-item.tsx'
 
 interface Props {
+  id: number
   name: string
-  items: FsItem[]
-  indent?: number
-  defaultExpanded?: boolean
+  expanded: boolean
+  toggleExpanded: () => void
+  level: number
+  setRef: (node: HTMLElement | null) => void
+  focusPrev: () => void
+  focusNext: () => void
 }
 
-export function DirectoryItem({ name, items, indent = 0, defaultExpanded = true }: Props) {
-  const [expanded, setExpanded] = useState<boolean>(defaultExpanded)
-
-  const toggleExpanded = () => {
-    setExpanded((prev) => !prev)
-  }
-
+export function DirectoryItem({ id, name, expanded, toggleExpanded, level, setRef, focusPrev, focusNext }: Props) {
   const iconSrc = expanded ? '/images/folder-open.svg' : '/images/folder.svg'
 
   return (
-    <li role="treeitem" aria-expanded={expanded}>
-      <div className={styles.entry} style={{ paddingLeft: `${indent}em` }} onClick={toggleExpanded}>
-        <img className={styles.icon} src={iconSrc} alt="directory" aria-hidden />
-        <span className={styles.name}>{name}</span>
-      </div>
-      {expanded && (
-        <ul role="group">
-          <Tree items={items} indent={indent + 1} />
-        </ul>
-      )}
-    </li>
+    <ExplorerItem
+      type="directory"
+      id={id}
+      name={name}
+      iconSrc={iconSrc}
+      level={level}
+      onDoubleClick={toggleExpanded}
+      onKeyDown={(event) => {
+        switch (event.key) {
+          case 'Enter':
+            toggleExpanded()
+            break
+          case 'ArrowUp':
+            focusPrev()
+            break
+          case 'ArrowDown':
+            focusNext()
+            break
+          case 'ArrowLeft':
+            if (expanded) {
+              toggleExpanded()
+            } else {
+              focusPrev()
+            }
+            break
+          case 'ArrowRight':
+            if (expanded) {
+              focusNext()
+            } else {
+              toggleExpanded()
+            }
+        }
+      }}
+      setRef={setRef}
+      expanded={expanded}
+    />
   )
 }
